@@ -20,4 +20,30 @@ routes.py 파일을 수정하면 됩니다.
 
 > 구성
 
-flask <--> sqlalchemy ==== mysql
+1. external request <-> backend_nginx ( 8099 to 5000 )
+2. backend_nginx <-> uwsgi ( 8080 )
+3. uwsgi <-> frontend_flask ( socket )
+
+> Reference
+
+- Nginx, Uwsgi, Flask
+  - [Flask - uwsgi - Nginx 와 docker-compose를 사용해 서버를 만들자 - 개발자 울이 노트](https://woolbro.tistory.com/95)
+
+> Usage
+
+1. docker-compose up -d --build
+
+   - docker-compose가 구버전일 경우 : [클릭](https://github.com/10up/wp-local-docker/issues/58#issuecomment-476786006)
+
+     버전만 1.27.4로 바꿔준다.
+
+   - docker가 없을 경우 ( ubuntu:20.04 기준 ): [설치 가이드](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04) 
+
+> Customize
+
+1. 포트포워딩 수정
+
+   - docker-compose.yml 내 backend 서비스의 ports 설정 부분 수정
+
+     ```- 8099:5000``` 를 ```wanna_port:5000```로 수정
+
