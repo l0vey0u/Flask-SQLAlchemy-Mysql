@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>일일 확진자 수 조회하기</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+	</head>
+	<body>
+		<div class="main">
+			<h1>일일 확진자 수 조회</h1>
+			<div class="links">
+					<a href="{{ url_for('db_read') }}" class="active">일일 확진자 수 조회하기</a>
+					<a href="{{ url_for('db_create') }}">확진자 수 입력하기</a>
+			</div>
+			<div class="content">
+				<table>
+					<th>날짜</th>
+					<th>확진자 수</th>
+				{% for obj in data_list%}
+					<tr>
+						<td>{{obj.date}}</td>
+						<td>{{obj.count}}명</td>
+					</tr>
+				{% endfor %}
+				</table>
+			</div>
+		</div>
+	</body>
+</html>

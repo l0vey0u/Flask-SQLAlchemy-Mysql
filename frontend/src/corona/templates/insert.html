@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>확진자 수 입력 페이지</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+    </head>
+    <body>
+        <div class="main">
+            <h1>확진자 수 정보 입력</h1>
+            <div class="links">
+                    <a href="{{ url_for('db_read') }}">일일 확진자 수 조회하기</a>
+                    <a href="{{ url_for('db_create') }}" class="active">확진자 수 입력하기</a>
+            </div>
+            <form action="{{ url_for('db_create') }}" method="post">
+
+                <label for="DATE">
+                    <i class="fas fa-calendar-day"></i>
+                </label>
+                <input type="date" name="date" placeholder="date" id="date" required>
+
+                <label for="COUNT">
+                    <i class="fas fa-viruses"></i>
+                </label>
+                    <input type="number" name="count" placeholder="count" id="count" required>
+                    <input type="submit" value="DB로 정보 보내기">
+            </form>
+			<form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+				<input type=file name=file>
+				<input type=submit value=Upload>
+            </form>
+            <div class="msg">{{ msg }}</div>
+        </div>
+    </body>
+</html>

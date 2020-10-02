@@ -1,0 +1,13 @@
+from flask_sqlalchemy import SQLAlchemy
+from corona import app
+from corona import config
+
+app.config['SQLALCHEMY_DATABASE_URI'] = config.get_alchemy_uri()
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+#db.create_all()
+
+from corona.models import DailyConfirmed
+from corona.models import UploadedFile
+
+db.create_all()

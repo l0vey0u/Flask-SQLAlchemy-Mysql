@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  frontend:
+    restart: always
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend_flask
+    depends_on:
+      - db
+    ports:
+      - 8099:80
+    environment: 
+      MYSQL_HOST: db
+      MYSQL_DB: corona
+      MYSQL_USER: syru
+      MYSQL_PASS: syru
+    links:
+      - db
+  db:
+    container_name: db_mysql
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: syru
+      MYSQL_DATABASE: corona
+      MYSQL_USER: syru
+      MYSQL_PASSWORD: syru
+    cap_add:
+      - SYS_NICE
