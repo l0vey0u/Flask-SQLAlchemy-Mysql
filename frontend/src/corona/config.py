@@ -1,5 +1,4 @@
 import os
-from werkzeug.utils import secure_filename
 
 ### File Upload ###
 UPLOAD_FOLDER_LOCATION = 'corona/static/csv'
