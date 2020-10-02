@@ -1,3 +1,4 @@
+pandas
 uwsgi
 Flask
 flask_sqlalchemy

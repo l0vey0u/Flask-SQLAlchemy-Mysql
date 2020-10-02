@@ -2,7 +2,7 @@
 
 > 설명
 
-Create, Read, Update, Delete + 파일 업로드 기능을 해당 환경에서 구현하였습니다.
+Create, Read, Update, Delete + 파일 업로드/다운로드 기능을 해당 환경에서 구현하였습니다.
 
 일일 코로나 확진자 수 데이터를 다루는 상황이며
 
@@ -17,6 +17,14 @@ routes.py 파일을 수정하면 됩니다.
 해당 db에서 정보를 얻을 수 있게 구성하였습니다.
 
 중복 데이터 등록 시도를 막기 위하여 checksum 비교를 통해 이미 업로드된 파일은 받지 않도록 하였습니다.
+
+
+
+DailyConfirmed Table을 Pandas 모듈을 이용해 DataFrame 형태로 바꾸고 csv파일로 export 하는 기능을 
+
+/export/에 구현해두었습니다.
+
+
 
 > 구성
 

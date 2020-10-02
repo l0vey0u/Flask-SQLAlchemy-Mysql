@@ -1,4 +1,5 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, Response
+from flask_sqlalchemy import get_debug_queries
 
 from corona import app, config
 from corona.models import db
@@ -11,6 +12,9 @@ import codecs
 import shutil
 from werkzeug.utils import secure_filename
 from hashlib import md5
+
+import pandas as pd
+from io import StringIO
 
 @app.route('/', methods=['GET'])
 def index():
@@ -103,3 +107,22 @@ def upload_file():
 
         return redirect(url_for('db_read'))
     return redirect(url_for('db_create', msg="파일을 업로드 에러, 다시 시도해주세요."))
+    
+@app.route('/export/')
+def export_csv():
+    queryset = DailyConfirmed.query
+    # Pandas가 SQL을 읽도록 만들어주기
+    df = pd.read_sql(queryset.statement, queryset.session.bind) 
+    output = StringIO()
+    # 한글 인코딩 위해 UTF-8 with BOM 설정해주기
+    output.write(u'\ufeff') 
+    df.to_csv(output)
+    # CSV 파일 형태로 브라우저가 파일다운로드라고 인식하도록 만들어주기
+    response = Response(
+        output.getvalue(),
+        mimetype="text/csv",
+        content_type='application/octet-stream',
+    )
+    # 다운받았을때의 파일 이름 지정해주기
+    response.headers["Content-Disposition"] = "attachment; filename=export.csv" 
+    return response
