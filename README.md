@@ -24,7 +24,7 @@ DailyConfirmed Table을 Pandas 모듈을 이용해 DataFrame 형태로 바꾸고
 
 /export/에 구현해두었습니다.
 
-
+---
 
 > 구성
 
@@ -56,6 +56,8 @@ DailyConfirmed Table을 Pandas 모듈을 이용해 DataFrame 형태로 바꾸고
   - HTTP Request -> Python Request
   - Python Response -> HTTP Response
 - Translate HTTP Protocol Request to Python Call
+
+---
 
 > Reference
 
