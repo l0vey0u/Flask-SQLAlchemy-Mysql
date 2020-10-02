@@ -32,6 +32,31 @@ DailyConfirmed Table을 Pandas 모듈을 이용해 DataFrame 형태로 바꾸고
 2. backend_nginx <-> uwsgi ( 8080 )
 3. uwsgi <-> frontend_flask ( socket )
 
+### NGINX
+
+---
+
+> Role
+
+- Serve static page / file like css, image ...
+  - Also do caching ( micro caching )
+- Reverse Proxy 
+- Load Balancing
+
+
+
+### uWSGI
+
+---
+
+> Role
+
+- Middleware
+- Web Server(Nginx)와 Web Application(Flask)간의 연결을 중계
+  - HTTP Request -> Python Request
+  - Python Response -> HTTP Response
+- Translate HTTP Protocol Request to Python Call
+
 > Reference
 
 - Nginx, Uwsgi, Flask
