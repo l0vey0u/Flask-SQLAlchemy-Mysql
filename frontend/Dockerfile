@@ -11,6 +11,5 @@ RUN locale-gen ko_KR.UTF-8
 ENV LC_ALL ko_KR.UTF-8
 
 COPY ./src /app
-EXPOSE 8099
 
-CMD python manage.py runserver
+CMD ["uwsgi","uwsgi.ini"]

@@ -8,17 +8,7 @@ migrate = Migrate(app, db)
 
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
-manager.add_command('runserver', Server(host='0.0.0.0', port=80))
+manager.add_command('runserver', Server(host='0.0.0.0'))
 
 if __name__ == '__main__':
     manager.run()
-
-"""
-Usage
-
-python manage.py db init
-python manage.py db migrate
-python manage.py db upgrade
-python manage.py db --help
-
-"""

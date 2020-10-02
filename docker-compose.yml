@@ -1,5 +1,13 @@
 version: '3.8'
 services:
+  backend:
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend_nginx
+    ports:
+      - 8099:5000
   frontend:
     restart: always
     build:
@@ -8,8 +16,8 @@ services:
     container_name: frontend_flask
     depends_on:
       - db
-    ports:
-      - 8099:80
+    expose:
+      - 8080
     environment: 
       MYSQL_HOST: db
       MYSQL_DB: corona

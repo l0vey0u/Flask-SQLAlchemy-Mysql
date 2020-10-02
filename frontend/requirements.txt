@@ -1,3 +1,4 @@
+uwsgi
 Flask
 flask_sqlalchemy
 mysqlclient
