@@ -17,7 +17,7 @@ mysql_config = {
 }
 
 def get_alchemy_uri():
-    return 'mysql://%s:%s@%s/%s?charset=utf8' % (
+    return 'mysql+pymysql://%s:%s@%s/%s?charset=utf8' % (
             mysql_config['user'], mysql_config['pass'], mysql_config['host'], mysql_config['db']
     )
 

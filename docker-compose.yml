@@ -23,8 +23,7 @@ services:
       MYSQL_DB: corona
       MYSQL_USER: syru
       MYSQL_PASS: syru
-    links:
-      - db
+
   db:
     container_name: db_mysql
     image: mysql:8.0
